@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ResumeInfoProvider } from "./context/ResumeContext.jsx"; // Adjust import path
 import {
 	RouterProvider,
-	createBrowserRouter,
+	createHashRouter,
 	Route,
 	createRoutesFromElements,
 } from "react-router-dom";
@@ -24,7 +24,7 @@ import App from "./App.jsx";
 import "./index.css";
 import Summary from "./components/Routes/Summary.jsx";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
 			<Route index element={<Home />} />
