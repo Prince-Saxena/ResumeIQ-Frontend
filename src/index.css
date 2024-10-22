@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	padding-top: 4rem;
+}
+
+@media print {
+	body {
+		margin: 0; /* Remove body margin */
+		padding: 0; /* Remove body padding */
+		font-size: 12px; /* Adjust font size to fit content */
+		line-height: 1.2; /* Adjust line height */
+	}
+
+	.resume-container {
+		width: 100%; /* Use full width */
+		overflow: hidden; /* Prevent overflow */
+	}
+
+	/* Hide any unnecessary elements */
+	.no-print {
+		display: none; /* Hide elements that shouldn't be in the PDF */
+	}
+}

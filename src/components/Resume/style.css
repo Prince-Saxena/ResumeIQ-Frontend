@@ -1,0 +1,19 @@
+.div {
+	color: #333333;
+}
+
+.resume-h1 {
+	color: rgb(35, 73, 188);
+}
+
+.resume-h2 {
+	color: blue;
+}
+
+.resume-container section {
+	page-break-inside: avoid;
+}
+
+.resume-h3 {
+	color: cornflowerblue;
+}
