@@ -11,7 +11,7 @@ function Personal() {
 	};
 
 	return (
-		<div className="w-full 2xl:sticky 2xl:top-16  p-4 pt-0 h-fit">
+		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit">
 			<div className="bg-white shadow-lg border-t-4 border-blue-400 min-w-lg rounded-lg p-8">
 				<form className="space-y-4">
 					<h2 className="text-2xl font-bold text-center mb-4">Personal Information</h2>

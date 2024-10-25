@@ -58,9 +58,9 @@ function Workexp() {
 	// useEffect;
 
 	return (
-		<div className="w-full 2xl:sticky 2xl:top-16  p-4 pt-0 h-fit">
+		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit">
 			<div className="bg-white  shadow-lg border-t-4 border-blue-400 rounded-lg min-w-lg p-8">
-				<form className="max-w-lg mx-auto  text-[#2e1885]">
+				<form className="space-y-4  text-[#2e1885]">
 					<h2 className="text-2xl font-bold text-center mb-4">Work Experience</h2>
 
 					<div className="flex space-x-4">
@@ -86,20 +86,22 @@ function Workexp() {
 						/>
 					</div>
 
-					<div className="flex space-x-4 mt-4">
+					<div className="flex space-x-4">
 						<input
-							type="date"
+							type="text"
 							name="startDate"
 							// value={formData.start}
+							placeholder="Joining Date"
 							required={hasWorkExperience}
 							disabled={!hasWorkExperience}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setStart(e.target.value)}
 						/>
 						<input
-							type="date"
+							type="text"
 							name="endDate"
-							value={formData.end}
+							// value={formData.end}
+							placeholder="Termination Date"
 							required={hasWorkExperience}
 							disabled={!hasWorkExperience}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -107,7 +109,7 @@ function Workexp() {
 						/>
 					</div>
 
-					<div className="flex flex-col mt-4">
+					<div className="flex space-x-4">
 						<textarea
 							name="responsibilities"
 							value={formData.responsibilities}
@@ -115,24 +117,25 @@ function Workexp() {
 							required={hasWorkExperience}
 							disabled={!hasWorkExperience}
 							rows="2"
-							className="p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+							className=" w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
 							onChange={(e) => setResponsibilities(e.target.value)}
 						></textarea>
 					</div>
 
 					<div className="flex justify-between mt-4 items-center">
-						<div className="flex items-center justify-center w-12 h-12 border-2 border-dashed border-blue-500 rounded-full">
-							<button
-								type="button"
-								className="text-4xl text-blue-500"
-								onClick={addExp}
-							>
-								+
-							</button>
+						<div className="flex w-2/5">
+							<div className="flex items-center justify-center w-28 h-12 border-2 border-dashed border-blue-500 rounded-full xl:w-1/4 lg:w-1/2 md:w-1/4 sm:w-1/2">
+								<button
+									className="text-xl w-full h-full flex items-center justify-center text-blue-500 mr-2"
+									onClick={addExp}
+								>
+									+
+								</button>
+							</div>
 						</div>
 
 						{/* Navigation Buttons */}
-						<div className="flex justify-end gap-2">
+						<div className="flex justify-end gap-1">
 							<Link
 								to="../education"
 								className="px-4 py-2 bg-gray-500 focus:outline-none text-white text-lg rounded hover:bg-gray-600"
@@ -186,7 +189,7 @@ function Workexp() {
 				)}
 
 				{showModal && (
-					<div className="fixed z-10 inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+					<div className="fixed z-10 max-w-full inset-0 bg-black bg-opacity-50 flex items-center justify-center">
 						<div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
 							{/* New Experience Question */}
 							<h3 className="text-xl font-semibold mb-4 text-center">
