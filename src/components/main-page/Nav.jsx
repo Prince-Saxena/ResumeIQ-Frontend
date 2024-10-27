@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import RESUMEIQ from "/RESUMEIQ.jpg";
+import RESUMEIQ from "../../../public/RESUMEIQ.jpg";
 
 export default function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
