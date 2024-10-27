@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -37,11 +39,11 @@ const Home = () => {
 					</div>
 					<div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
 						<h3 className="text-xl sm:text-2xl font-bold text-blue-600 mb-4">
-							Customizable Layouts
+							Downloadable Formats
 						</h3>
 						<p>
-							Tailor your resume format to fit your style and job requirements with
-							customizable options.
+							Download your resume in various formats, including PDF and DOCX, for
+							easy sharing and printing.
 						</p>
 					</div>
 					<div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out">
@@ -73,8 +75,11 @@ const Home = () => {
 			</section>
 
 			{/* Footer Section */}
-			<footer className="py-6 sm:py-8 bg-gray-800 text-white text-center">
-				<p>© 2024 YourResumeBuilder. All rights reserved.</p>
+			<footer className="py-8 bg-gray-800 text-white text-center">
+				<p>⚡ Powered by the brilliance of Prince Saxena!</p>
+				<p>
+					ResumeIQ | <FontAwesomeIcon icon={faBolt} /> Electrifying the tech scene!
+				</p>
 			</footer>
 		</div>
 	);

@@ -4,7 +4,7 @@ import Resume from "../Resume/Resume";
 import html2pdf from "html2pdf.js";
 
 const ResumeInput = () => {
-	const resumeRef = useRef(); // Create a ref to reference the Resume component
+	const resumeRef = useRef();
 	const navigate = useNavigate();
 
 	const handleSelectChange = (e) => {
@@ -14,36 +14,35 @@ const ResumeInput = () => {
 		}
 	};
 	const handleDownload = () => {
-		const element = resumeRef.current; // Get the current reference of the resume
+		const element = resumeRef.current;
 		const options = {
-			margin: 0, // Adjust the margin to fit content
+			margin: 0,
 			filename: "resume.pdf",
 			image: {
 				type: "jpeg",
-				quality: 1.0, // Set image quality to maximum
+				quality: 1.0,
 			},
 			html2canvas: {
-				scale: 3, // Increase scale for better quality
-				useCORS: true, // Use CORS to handle any external images
-				backgroundColor: null, // Capture background styles
-				logging: true, // Enable logging for debugging
+				scale: 3,
+				useCORS: true,
+				backgroundColor: null,
+				logging: true,
 			},
 			jsPDF: {
-				orientation: "portrait", // Ensure the correct orientation
-				unit: "in", // Set units to inches
-				format: "letter", // Set page size
+				orientation: "portrait",
+				unit: "in",
+				format: "letter",
 				margin: 0,
 			},
 		};
 
-		// Trigger the download
 		html2pdf().from(element).set(options).save();
 	};
 
 	return (
 		<div className=" text-[#2e1885] p-5">
 			{/* Navigation Tabs */}
-			<section className="flex flex-col sm:flex-row justify-between items-center mb-6">
+			<section className="flex flex-row  justify-between items-center mb-6">
 				{/* Left section with the NavLinks */}
 				<div>
 					{/* Dropdown for screens smaller than 1024px */}
@@ -93,12 +92,15 @@ const ResumeInput = () => {
 					</div>
 				</div>
 				{/* Download Button */}
-				<button
-					onClick={handleDownload}
-					className="mt-4 sm:mt-0 ml-auto px-4 py-2 bg-blue-500 text-white rounded shadow transition duration-200 hover:bg-blue-600"
-				>
-					Download PDF
-				</button>
+				<div className="flex items-center">
+					<button
+						// onClick={handleDownload}
+						onClick={() => handleDownload()}
+						className=" sm:mt-0 ml-auto px-4 py-2 bg-blue-500 text-white rounded shadow transition duration-200 hover:bg-blue-600"
+					>
+						Download PDF
+					</button>
+				</div>
 			</section>
 
 			{/* Layout for Form and Preview */}
@@ -109,8 +111,8 @@ const ResumeInput = () => {
 				</div>
 
 				{/* Resume Component */}
-				<div className="md:mt-4 lg:w-3/5 shadow-2xl w-full">
-					<Resume ref={resumeRef} />
+				<div className="md:mt-4 shadow-2xl ">
+					<Resume ref={resumeRef} id="resume" />
 				</div>
 			</div>
 		</div>

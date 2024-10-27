@@ -19,6 +19,7 @@ import {
 	Skills,
 	Project,
 	ContactUs,
+	Services,
 } from "./components/index.js";
 import App from "./App.jsx";
 import "./index.css";
@@ -30,6 +31,7 @@ const router = createHashRouter(
 			<Route index element={<Home />} />
 			<Route path="about" element={<About />} />
 			<Route path="contact" element={<ContactUs />} />
+			<Route path="services" element={<Services />} />
 			<Route path="user-input" element={<ResumeInput />}>
 				<Route path="personal" element={<Personal />} />
 				<Route path="project" element={<Project />} />
@@ -41,7 +43,6 @@ const router = createHashRouter(
 		</Route>
 	)
 );
-
 
 createRoot(document.getElementById("root")).render(
 	<ResumeInfoProvider>

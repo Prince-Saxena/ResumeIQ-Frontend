@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import RESUMEIQ from "/RESUMEIQ.jpg";
 
 export default function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ export default function NavBar() {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="relative flex items-center justify-between h-16">
 					{/* Mobile menu button */}
-					<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
 						<button
 							onClick={() => setIsOpen(!isOpen)}
 							className="inline-flex items-center justify-center p-2 rounded-md text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400"
@@ -50,12 +51,10 @@ export default function NavBar() {
 					</div>
 					{/* Logo and Links */}
 					<div className="flex items-center justify-center sm:items-stretch sm:justify-start">
-						<div className="flex-shrink-0">
-							<img
-								src="RESUMEIQBG.png"
-								alt="Logo"
-								className="w-10 h-10 object-cover"
-							/>
+						<div className="flex-shrink-0 mr-8">
+							<NavLink to="/">
+								<img src={RESUMEIQ} alt="Logo" className="w-12 h-10" />
+							</NavLink>
 						</div>
 						<div className="hidden sm:block sm:ml-6">
 							<div className="flex space-x-4">
