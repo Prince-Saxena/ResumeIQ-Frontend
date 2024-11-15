@@ -1,29 +1,45 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import shortid from "shortid";
-
 import { ResumeInfoContext } from "../../context/ResumeContext";
 
 function Education() {
 	const { formData, setFormData } = useContext(ResumeInfoContext);
-	const [degree, setDegree] = useState();
-	const [major, setMajor] = useState();
-	const [start, setStart] = useState();
-	const [end, setEnd] = useState();
-	const [loc, setLoc] = useState();
-	const [institution, setInstitution] = useState();
+	const [editingId, setEditingId] = useState(null);
+	const [degree, setDegree] = useState("");
+	const [major, setMajor] = useState("");
+	const [start, setStart] = useState("");
+	const [end, setEnd] = useState("");
+	const [loc, setLoc] = useState("");
+	const [institution, setInstitution] = useState("");
 
+	// Handle clicking on an education entry to edit
+	const handleEdit = (edu) => {
+		setEditingId(edu.id);
+		setDegree(edu.degree || "");
+		setMajor(edu.major || "");
+		setStart(edu.start || "");
+		setEnd(edu.end || "");
+		setInstitution(edu.institution || "");
+		setLoc(edu.location || "");
+	};
+
+	// Add a new education entry
 	const addEdu = () => {
-		const exp = {
+		const newEdu = {
 			id: shortid.generate(),
-			degree: degree,
-			major: major,
-			start: start,
-			end: end,
-			institution: institution,
+			degree,
+			major,
+			start,
+			end,
+			institution,
 			location: loc,
 		};
-		setFormData((prev) => ({ ...prev, education: [...(prev.education || []), exp] }));
+		setFormData((prev) => ({
+			...prev,
+			education: [...(prev.education || []), newEdu],
+		}));
+		// Reset input fields
 		setDegree("");
 		setMajor("");
 		setStart("");
@@ -32,41 +48,69 @@ function Education() {
 		setLoc("");
 	};
 
+	// Remove an education entry
 	const handleRemove = (id) => {
-		if (formData.education.length == 1) {
-			alert("You have to add atleast an Eduaction!");
+		if (formData.education.length === 1) {
+			alert("You have to add at least one Education!");
 			return;
 		}
-		const updatedEducation = formData.education.filter((skill) => skill.id !== id);
+		const updatedEducation = formData.education.filter((edu) => edu.id !== id);
 		setFormData((prevData) => ({
 			...prevData,
 			education: updatedEducation,
 		}));
 	};
 
+	// Save the edited education entry
+	const save = () => {
+		const updatedEducation = formData.education.map((edu) =>
+			edu.id === editingId
+				? {
+						...edu,
+						degree: degree || edu.degree,
+						major: major || edu.major,
+						start: start || edu.start,
+						end: end || edu.end,
+						institution: institution || edu.institution,
+						location: loc || edu.location,
+				  }
+				: edu
+		);
+		setFormData((prevData) => ({
+			...prevData,
+			education: updatedEducation,
+		}));
+		setEditingId(null);
+		// Reset input fields
+		setDegree("");
+		setMajor("");
+		setStart("");
+		setEnd("");
+		setInstitution("");
+		setLoc("");
+	};
+
 	return (
-		<div className="w-full 2xl:sticky 2xl:top-16   p-4 pt-0 h-fit">
+		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit">
 			<div className="bg-white shadow-lg border-t-4 border-blue-400 rounded-lg min-w-lg p-8">
-				<form className="min-w-lg  mx-auto text-[#2e1885]">
+				<form className="min-w-lg mx-auto text-[#2e1885]">
 					<h2 className="text-2xl font-bold text-center mb-4">Education Details</h2>
 
-					{/* Degree & Institute */}
+					{/* Degree & Institution */}
 					<div className="flex space-x-4">
 						<input
 							type="text"
 							name="degree"
-							defaultValue=""
 							placeholder="Degree"
-							required
+							value={degree}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setDegree(e.target.value)}
 						/>
 						<input
 							type="text"
 							name="institution"
-							defaultValue=""
 							placeholder="Institution"
-							required
+							value={institution}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setInstitution(e.target.value)}
 						/>
@@ -77,39 +121,36 @@ function Education() {
 						<input
 							type="number"
 							name="startyear"
-							defaultValue=""
 							placeholder="Start Year"
-							required
+							value={start}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setStart(e.target.value)}
 						/>
 						<input
 							type="number"
 							name="endyear"
-							defaultValue=""
 							placeholder="End Year"
-							required
+							value={end}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setEnd(e.target.value)}
 						/>
 					</div>
 
-					{/* Grade & Major */}
+					{/* Location & Major */}
 					<div className="flex space-x-4 mt-4">
 						<input
 							type="text"
 							name="location"
-							defaultValue=""
 							placeholder="Location"
-							required
+							value={loc}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setLoc(e.target.value)}
 						/>
 						<input
 							type="text"
 							name="major"
-							defaultValue=""
 							placeholder="Major/Field of Study"
+							value={major}
 							className="w-1/2 p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							onChange={(e) => setMajor(e.target.value)}
 						/>
@@ -134,7 +175,7 @@ function Education() {
 								Prev
 							</Link>
 							<Link
-								to="../workexp" // Change this to the next component route
+								to="../workexp"
 								className="px-4 py-2 bg-blue-500 focus:outline-none text-white text-lg rounded hover:bg-blue-600"
 							>
 								Next
@@ -143,32 +184,56 @@ function Education() {
 					</div>
 				</form>
 			</div>
+
+			{/* Education Display */}
 			<div className="section relative bg-white mt-6 p-4 rounded-lg shadow-lg">
-				{formData.education.map((idx) => (
+				{formData.education.map((edu) => (
 					<div
-						key={idx.id}
+						key={edu.id}
 						className="mx-auto border-2 border-slate-200 p-4 mb-4 h-full rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
 					>
 						<div className="space-y-2">
 							<div className="flex justify-between items-center space-x-4">
 								<div className="text-xl font-semibold text-[#2e1885]">
-									{idx.degree}{" "}
+									<p className="inline px-2" onClick={() => handleEdit(edu)}>
+										{edu.degree}
+									</p>
 									<span className="text-base font-medium text-gray-600">
-										in {idx.major}
+										<p className="inline px-2" onClick={() => handleEdit(edu)}>
+											in {edu.major}
+										</p>
 									</span>
 								</div>
+								{/* Edit Button (Pencil Icon) */}
+								<button
+									className="text-lg text-blue-500 hover:text-blue-700"
+									onClick={() => handleEdit(edu)}
+									title="Edit"
+								>
+									✏️
+								</button>
+								{/* Remove Button */}
 								<button
 									className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
-									onClick={() => handleRemove(idx.id)}
+									onClick={() => handleRemove(edu.id)}
 									title="Remove"
 								>
 									&times;
 								</button>
 							</div>
-							<p className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
-								{idx.institution} [<i className="font-sans text-base">From</i>{" "}
-								{idx.start} <i className="font-sans text-base">To</i> {idx.end}]
-							</p>
+							<div className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
+								<p className="inline px-2" onClick={() => handleEdit(edu)}>
+									{edu.institution}
+								</p>
+								<p className="inline px-2" onClick={() => handleEdit(edu)}>
+									{edu.start} - {edu.end}
+								</p>
+							</div>
+							<div className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
+								<p className="inline px-2" onClick={() => handleEdit(edu)}>
+									{edu.location}
+								</p>
+							</div>
 						</div>
 					</div>
 				))}

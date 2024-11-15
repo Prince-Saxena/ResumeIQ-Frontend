@@ -1,8 +1,6 @@
-// index.js
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { useContext } from "react";
-import { ResumeInfoProvider } from "./context/ResumeContext.jsx"; // Adjust import path
+import { ResumeInfoProvider } from "./context/ResumeContext.jsx"; 
 import {
 	RouterProvider,
 	createHashRouter,

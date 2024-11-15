@@ -10,7 +10,12 @@ function Skills() {
 
 	const addSkill = () => {
 		if (skill && category) {
-			const newSkill = { id: shortid.generate(), category, skills: [skill] };
+			const newSkill = {
+				id: shortid.generate(),
+				category,
+				skills: [skill],
+				isEditable: false,
+			};
 			setFormData((prevData) => ({
 				...prevData,
 				skillsData: [...(prevData.skillsData || []), newSkill],
@@ -43,9 +48,39 @@ function Skills() {
 		}));
 	};
 
+	const handleToggleEdit = (id) => {
+		const updatedSkills = formData.skillsData.map((skill) =>
+			skill.id === id ? { ...skill, isEditable: !skill.isEditable } : skill
+		);
+		setFormData((prevData) => ({
+			...prevData,
+			skillsData: updatedSkills,
+		}));
+	};
+
+	const handleEditCategory = (e, id) => {
+		const updatedSkills = formData.skillsData.map((skill) =>
+			skill.id === id ? { ...skill, category: e.target.value } : skill
+		);
+		setFormData((prevData) => ({
+			...prevData,
+			skillsData: updatedSkills,
+		}));
+	};
+
+	const handleEditSkills = (e, id) => {
+		const updatedSkills = formData.skillsData.map((skill) =>
+			skill.id === id ? { ...skill, skills: e.target.value.split(",") } : skill
+		);
+		setFormData((prevData) => ({
+			...prevData,
+			skillsData: updatedSkills,
+		}));
+	};
+
 	return (
-		<div className="w-full 2xl:sticky 2xl:top-16  p-4 pt-0 h-fit">
-			<div className="bg-white  shadow-md min-w-lg border-t-4 border-blue-400 rounded-lg p-8">
+		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit">
+			<div className="bg-white shadow-md min-w-lg border-t-4 border-blue-400 rounded-lg p-8">
 				<form className="max-w-lg mx-auto h-full text-[#2e1885]" onSubmit={handleSubmit}>
 					<h2 className="text-2xl font-bold text-center mb-4">Skills Detail</h2>
 
@@ -54,7 +89,6 @@ function Skills() {
 						<input
 							type="text"
 							name="category"
-							// value={category}
 							placeholder="Category"
 							required
 							className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -67,7 +101,6 @@ function Skills() {
 						<input
 							type="text"
 							name="skill"
-							// value={skill}
 							placeholder="Skills (e.g., JavaScript)"
 							required
 							className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -122,8 +155,9 @@ function Skills() {
 										type="text"
 										name="category"
 										value={skill.category}
-										placeholder="Skill"
-										disabled
+										placeholder="Category"
+										disabled={!skill.isEditable}
+										onChange={(e) => handleEditCategory(e, skill.id)}
 										className="w-full p-3 border-none rounded text-base font-bold text-[#2e1885] focus:ring-2 focus:ring-blue-500 focus:outline-none bg-transparent"
 									/>
 								</div>
@@ -133,8 +167,9 @@ function Skills() {
 										type="text"
 										name="skills"
 										value={skill.skills.join(", ")}
-										placeholder="Frameworks & Libraries (Languages)"
-										disabled
+										placeholder="Skills"
+										disabled={!skill.isEditable}
+										onChange={(e) => handleEditSkills(e, skill.id)}
 										className="w-full p-3 border-none rounded focus:ring-2 text-gray-700 focus:ring-blue-500 focus:outline-none bg-transparent "
 									/>
 									<button
@@ -142,6 +177,13 @@ function Skills() {
 										onClick={() => handleRemove(skill.id)}
 									>
 										&times;
+									</button>
+									<button
+										type="button"
+										className="text-lg text-blue-500"
+										onClick={() => handleToggleEdit(skill.id)}
+									>
+										{skill.isEditable ? "Save" : "Edit"}
 									</button>
 								</div>
 							</div>

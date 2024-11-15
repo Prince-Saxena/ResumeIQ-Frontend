@@ -11,10 +11,11 @@ function Projects() {
 	const [role, setRole] = useState("");
 	const [link, setLink] = useState("");
 	const [desc, setDesc] = useState("");
+	const [editProjectId, setEditProjectId] = useState(null); // To track which project is being edited
 
 	const addProject = () => {
 		const technology = tech ? tech.split(",") : [];
-		const exp = {
+		const newProject = {
 			id: shortid.generate(),
 			title,
 			technologies: technology,
@@ -22,7 +23,13 @@ function Projects() {
 			description: desc,
 			role,
 		};
-		setFormData((prev) => ({ ...prev, projects: [...(prev.projects || []), exp] }));
+
+		setFormData((prev) => ({
+			...prev,
+			projects: [...(prev.projects || []), newProject],
+		}));
+
+		// Reset input fields
 		setTitle("");
 		setTech("");
 		setRole("");
@@ -38,8 +45,40 @@ function Projects() {
 		}));
 	};
 
+	const handleEdit = (project) => {
+		setTitle(project.title);
+		setTech(project.technologies.join(","));
+		setRole(project.role);
+		setLink(project.link);
+		setDesc(project.description);
+		setEditProjectId(project.id); // Set the project being edited
+	};
+
+	const handleSave = () => {
+		const updatedProjects = formData.projects.map((project) =>
+			project.id === editProjectId
+				? {
+						...project,
+						title,
+						technologies: tech.split(","),
+						role,
+						link,
+						description: desc,
+				  }
+				: project
+		);
+		setFormData((prev) => ({ ...prev, projects: updatedProjects }));
+		// Reset the form
+		setTitle("");
+		setTech("");
+		setRole("");
+		setLink("");
+		setDesc("");
+		setEditProjectId(null);
+	};
+
 	return (
-		<div className="w-full 2xl:sticky 2xl:top-16   p-4 pt-0 h-fit  sm:px-8 lg:px-6">
+		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit sm:px-8 lg:px-6">
 			<div className="bg-white shadow-lg border-t-4 border-blue-400 rounded-lg p-8 min-w-lg">
 				<form className="text-[#2e1885]">
 					<h2 className="text-2xl font-bold text-center mb-6">Project Details</h2>
@@ -99,9 +138,9 @@ function Projects() {
 						<button
 							type="button"
 							className="text-4xl text-blue-500 border-2 border-dashed border-blue-500 rounded-full w-12 h-12 flex items-center justify-center"
-							onClick={addProject}
+							onClick={editProjectId ? handleSave : addProject} // Use save for edit or add for new
 						>
-							+
+							{editProjectId ? "✔️" : "+"} {/* Conditional button text */}
 						</button>
 						<div className="flex gap-2">
 							<Link
@@ -135,13 +174,22 @@ function Projects() {
 										{`{${project.role}}`}
 									</span>
 								</div>
-								<button
-									className="w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
-									onClick={() => handleRemove(project.id)}
-									title="Remove"
-								>
-									&times;
-								</button>
+								<div className="flex gap-2">
+									<button
+										className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
+										onClick={() => handleEdit(project)} // Edit functionality
+										title="Edit"
+									>
+										✏️
+									</button>
+									<button
+										className="w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
+										onClick={() => handleRemove(project.id)}
+										title="Remove"
+									>
+										&times;
+									</button>
+								</div>
 							</div>
 							<p className="text-gray-700 text-sm bg-gray-50 px-3 py-2 rounded-lg">
 								{project.description}

@@ -1,28 +1,17 @@
 import React from "react";
+import { HeroSection } from "../index.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Home = () => {
 	return (
-		<div className="container bg-gray-50 mx-auto p-4 sm:p-8">
+		<div className="container bg-gray-50 py-1">
 			{/* Hero Section */}
-			<section className="text-center py-12 sm:py-16 bg-blue-600 text-white">
-				<h1 className="text-3xl sm:text-5xl font-bold mb-4 leading-snug sm:leading-tight">
-					Build Your Professional Resume Effortlessly
-				</h1>
-				<p className="text-base sm:text-lg mb-6">
-					Create a polished resume in minutes with our easy-to-use resume builder.
-				</p>
-				<Link
-					to="user-input/personal"
-					className="bg-white text-blue-600 py-2 px-6 sm:py-3 sm:px-8 rounded-full font-semibold hover:bg-blue-700 hover:text-white transition-colors duration-300 ease-in-out"
-				>
-					Get Started
-				</Link>
-			</section>
+			<HeroSection></HeroSection>
 
 			{/* Features Section */}
+
 			<section className="py-12 sm:py-16">
 				<h2 className="text-2xl sm:text-3xl font-semibold text-center text-blue-600 mb-8 sm:mb-12">
 					Why Choose Us

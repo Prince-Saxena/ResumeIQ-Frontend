@@ -25,17 +25,21 @@ function Summary() {
 	const fetchSummaries = async () => {
 		setLoading(true); // Start loading
 		try {
-			const response = await axios.post("https://api.gemini.com/generate-summary", {
-				// Assuming the API takes some role, profession, and level
-				role: formData.role || "Developer",
-				profession: formData.profession || "Software Engineer",
-			});
+			const response = await axios.post(
+				"https://cors-anywhere.herokuapp.com/https://api.gemini.com/generate-summary",
+				{
+					// Assuming the API takes some role, profession, and level
+					role: formData.role || "Developer",
+					profession: formData.profession || "Software Engineer",
+				}
+			);
 			// Assuming the response contains summaries for each level
 			setSummaries({
 				beginner: response.data.beginner,
 				intermediate: response.data.intermediate,
 				expert: response.data.expert,
 			});
+			console.log(summaries);
 		} catch (error) {
 			console.error("Error generating summaries:", error);
 		} finally {
@@ -172,10 +176,10 @@ function Summary() {
 
 					<div className="flex justify-between items-center mt-6 px-4">
 						{/* Button for generating summaries using AI */}
-						<div className="flex flex-col items-center w-full">
-							<div className="flex items-center justify-center w-28 h-12 border-2 border-dashed border-blue-500 rounded-full xl:w-1/3 lg:w-1/2 md:w-2/3 sm:w-3/4">
+						<div className="flex items-center w-full relative">
+							<div className="flex items-center w-full h-11 border-2 border-dashed border-blue-500 rounded-full md:w-1/3 justify-start min-w-[140px] sm:w-1/2 max-w-[160px] mr-2">
 								<button
-									className="text-xl w-full h-full flex items-center justify-center text-blue-500 mr-2"
+									className="text-sm w-full h-full flex items-center justify-center text-blue-500"
 									onClick={handle}
 									disabled={loading}
 								>

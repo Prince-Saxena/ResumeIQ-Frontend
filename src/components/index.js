@@ -10,5 +10,6 @@ import Workexp from "./Routes/Workexp";
 import Skills from "./Routes/Skills";
 import Project from "./Routes/Project";
 import Resume1 from "./Resume/Resume1";
+import HeroSection from "./small-components/Hero";
 
-export { Home, Nav, ContactUs, ResumeInput, About, Personal, Education, Workexp, Skills, Project , Services , Resume1 };
+export { Home, Nav, ContactUs, ResumeInput, About, Personal, Education, Workexp, Skills, Project , Services , Resume1 , HeroSection};
