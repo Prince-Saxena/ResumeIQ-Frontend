@@ -206,7 +206,7 @@ function Education() {
 								</div>
 								{/* Edit Button (Pencil Icon) */}
 								<button
-									className="text-lg text-blue-500 hover:text-blue-700"
+									className="text-lg text-blue-500 bg-blue-500 rounded-full w-8 h-8 hover:text-blue-700"
 									onClick={() => handleEdit(edu)}
 									title="Edit"
 								>

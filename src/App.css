@@ -18,3 +18,15 @@ html {
 	width: 40px;
 	left: 0px;
 } */
+.hero-text {
+	position: relative;
+}
+.hero-text::before {
+	content: "Build Your Professional Resume!";
+	z-index: -1;
+	color: white;
+	position: absolute;
+	left: -3px;
+	top: -3px;
+	-webkit-text-stroke: 1px blue;
+}

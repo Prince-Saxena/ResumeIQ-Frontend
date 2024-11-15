@@ -1,79 +1,92 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserGraduate } from "@fortawesome/free-solid-svg-icons";
+
 const Services = () => {
 	return (
-		<div className="container mx-auto p-8 bg-gray-50">
-			{/* Hero Section */}
-			<section className="text-center py-16 bg-blue-600 text-white">
-				<h1 className="text-5xl font-bold mb-4 leading-tight">Our Services</h1>
-				<p className="text-lg mb-6">Helping you create impactful resumes with ease.</p>
-			</section>
+		<>
+			{/* Watermark */}
+			<div className="fixed inset-0 font-serif flex justify-center items-center text-7xl text-gray-500 opacity-10 pointer-events-none">
+				ResumeIQ
+			</div>
 
-			{/* Services Section */}
-			<section className="py-16">
-				<h2 className="text-3xl font-semibold text-center text-blue-600 mb-12">
-					What We Offer
-				</h2>
-				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{/* Service 1: Resume Builder */}
-					<div className="bg-white p-8 rounded-lg shadow-lg text-center">
-						<h3 className="text-2xl font-semibold text-blue-600 mb-4">
-							Resume Builder
-						</h3>
-						<p className="text-gray-700">
-							Quickly create a professional resume by filling in your details. Our
-							builder guides you step-by-step to produce a standout resume.
-						</p>
-					</div>
+			{/* Main Content */}
+			<div className="w-full mx-auto pt-24 py-16 bg-gradient-to-r from-purple-100 via-indigo-200 to-blue-300">
+				{/* Our Services */}
+				<section className="text-center mb-16">
+					<h1 className="text-5xl sm:text-6xl font-extrabold text-purple-700 mb-6">
+						Our Services
+					</h1>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+						We offer a range of tools and services to help you create and perfect your
+						resume. From easy-to-use templates to smart suggestions, we make resume
+						building faster and better.
+					</p>
+				</section>
 
-					{/* Service 3: Downloadable Formats */}
-					<div className="bg-white p-8 rounded-lg shadow-lg text-center">
-						<h3 className="text-2xl font-semibold text-blue-600 mb-4">
-							Downloadable Formats
-						</h3>
-						<p className="text-gray-700">
-							Download your resume in various formats, including PDF and DOCX, for
-							easy sharing and printing.
-						</p>
-					</div>
+				{/* Services List */}
+				<section className="text-center mb-16">
+					<h2 className="text-4xl sm:text-5xl font-semibold text-blue-600 mb-4">
+						What We Offer
+					</h2>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+						Our services include customizable templates, PDF and DOCX download options,
+						and the ability to share your resume directly with recruiters. We also
+						provide advanced AI-powered suggestions to help enhance your resume.
+					</p>
+				</section>
 
-					{/* Service 5: One-Click Sharing */}
-					<div className="bg-white p-8 rounded-lg shadow-lg text-center">
-						<h3 className="text-2xl font-semibold text-blue-600 mb-4">
-							One-Click Sharing
-						</h3>
-						<p className="text-gray-700">
-							Instantly share your resume with recruiters and friends with our
-							one-click sharing feature, making the job search even easier.
-						</p>
-					</div>
-				</div>
-			</section>
+				{/* Service 1: Resume Builder */}
+				<section className="text-center mb-16">
+					<h2 className="text-4xl sm:text-5xl font-semibold text-blue-600 mb-4">
+						Resume Builder
+					</h2>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+						Our intuitive resume builder lets you create a professional resume step by
+						step. Choose from a variety of templates and formats to ensure your resume
+						looks great and stands out.
+					</p>
+				</section>
 
-			{/* Call to Action Section */}
-			<section className="text-center py-16 bg-blue-600 text-white">
-				<h2 className="text-3xl font-semibold mb-6">Ready to create your resume?</h2>
-				<p className="text-lg mb-6">
-					Get started with ResumeIQ and create a resume that stands out.
-				</p>
-				<a
-					href="#"
-					className="inline-block bg-white text-blue-600 font-semibold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors duration-300"
-				>
-					Start Now
-				</a>
-			</section>
+				{/* Service 2: Download Options */}
+				<section className="text-center mb-16">
+					<h2 className="text-4xl sm:text-5xl font-semibold text-blue-600 mb-4">
+						Download Options
+					</h2>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+						Once your resume is ready, you can download it in multiple formats,
+						including PDF and DOCX, making it easy to share and apply for jobs anywhere.
+					</p>
+				</section>
 
-			{/* Footer Section */}
-			<footer className="py-8 bg-gray-800 text-white text-center">
-				<p>💻 Built by the next tech legend in training!</p>
-				<p>
-					ResumeIQ |{" "}
-					<FontAwesomeIcon icon={faUserGraduate} /> Learning, coding, and conquering!
-				</p>
-			</footer>
-		</div>
+				{/* Service 3: One-Click Sharing */}
+				<section className="text-center mb-16">
+					<h2 className="text-4xl sm:text-5xl font-semibold text-blue-600 mb-4">
+						One-Click Sharing
+					</h2>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+						Share your resume directly with potential employers with just one click. Our
+						platform makes it easy for you to get your resume in front of the right
+						people quickly.
+					</p>
+				</section>
+
+				{/* Call to Action */}
+				<section className="text-center mb-16">
+					<h2 className="text-4xl sm:text-5xl font-semibold text-blue-600 mb-4">
+						Ready to Create Your Resume?
+					</h2>
+					<p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto mb-6">
+						Join us today and start building a standout resume that will help you land
+						your dream job!
+					</p>
+					<a
+						href="#"
+						className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300"
+					>
+						Start Now
+					</a>
+				</section>
+			</div>
+		</>
 	);
 };
 

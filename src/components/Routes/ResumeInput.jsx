@@ -40,7 +40,7 @@ const ResumeInput = () => {
 	};
 
 	return (
-		<div className=" text-[#2e1885] p-5">
+		<div className=" text-[#2e1885] px-5 py-20 ">
 			{/* Navigation Tabs */}
 			<section className="flex flex-row  justify-between items-center mb-6">
 				{/* Left section with the NavLinks */}

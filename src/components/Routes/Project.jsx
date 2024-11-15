@@ -170,7 +170,7 @@ function Projects() {
 							<div className="flex justify-between items-center">
 								<div className="text-xl font-semibold text-[#2e1885]">
 									{project.title}{" "}
-									<span className="text-base font-medium text-gray-400">
+									<span className="text-base block font-medium text-gray-400">
 										{`{${project.role}}`}
 									</span>
 								</div>

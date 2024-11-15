@@ -8,13 +8,14 @@ function Skills() {
 	const [skill, setSkill] = useState("");
 	const [category, setCategory] = useState("");
 
+	// Add Skill logic
 	const addSkill = () => {
 		if (skill && category) {
 			const newSkill = {
 				id: shortid.generate(),
 				category,
 				skills: [skill],
-				isEditable: false,
+				isEditable: false, // Initially not editable
 			};
 			setFormData((prevData) => ({
 				...prevData,
@@ -26,20 +27,23 @@ function Skills() {
 		}
 	};
 
+	// Handle category input change
 	const handleChangeCategory = (e) => {
 		setCategory(e.target.value);
 	};
 
+	// Handle skill input change
 	const handleChangeSkill = (e) => {
 		setSkill(e.target.value);
 	};
 
+	// Handle submit form (could be used for other form submissions)
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Logic for form submission
 		console.log("Form submitted", formData);
 	};
 
+	// Remove skill from the list
 	const handleRemove = (id) => {
 		const updatedSkills = formData.skillsData.filter((skill) => skill.id !== id);
 		setFormData((prevData) => ({
@@ -48,6 +52,7 @@ function Skills() {
 		}));
 	};
 
+	// Toggle edit mode for a skill (edit category or skills)
 	const handleToggleEdit = (id) => {
 		const updatedSkills = formData.skillsData.map((skill) =>
 			skill.id === id ? { ...skill, isEditable: !skill.isEditable } : skill
@@ -58,6 +63,7 @@ function Skills() {
 		}));
 	};
 
+	// Edit category of a skill
 	const handleEditCategory = (e, id) => {
 		const updatedSkills = formData.skillsData.map((skill) =>
 			skill.id === id ? { ...skill, category: e.target.value } : skill
@@ -68,6 +74,7 @@ function Skills() {
 		}));
 	};
 
+	// Edit skills (split by commas for multiple skills)
 	const handleEditSkills = (e, id) => {
 		const updatedSkills = formData.skillsData.map((skill) =>
 			skill.id === id ? { ...skill, skills: e.target.value.split(",") } : skill
@@ -142,49 +149,57 @@ function Skills() {
 			</div>
 
 			{/* Skills Display Section */}
-			<div className="section sticky top-96 bg-white mt-6 rounded-lg ">
+			<div className="section relative bg-white mt-6 p-4 rounded-lg shadow-lg">
 				{formData.skillsData &&
 					formData.skillsData.map((skill) => (
 						<div
 							key={skill.id}
-							className=" mx-auto border-2 border-slate-100 p-3 mb-4 h-full text-[#421cd8] rounded-xl"
+							className="mx-auto border-2 border-slate-200 p-4 mb-4 h-full rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
 						>
-							<div className="space-y-4">
-								<div className="flex space-x-4">
-									<input
-										type="text"
-										name="category"
-										value={skill.category}
-										placeholder="Category"
-										disabled={!skill.isEditable}
-										onChange={(e) => handleEditCategory(e, skill.id)}
-										className="w-full p-3 border-none rounded text-base font-bold text-[#2e1885] focus:ring-2 focus:ring-blue-500 focus:outline-none bg-transparent"
-									/>
-								</div>
-
-								<div className="flex mt-5 space-x-4">
-									<input
-										type="text"
-										name="skills"
-										value={skill.skills.join(", ")}
-										placeholder="Skills"
-										disabled={!skill.isEditable}
-										onChange={(e) => handleEditSkills(e, skill.id)}
-										className="w-full p-3 border-none rounded focus:ring-2 text-gray-700 focus:ring-blue-500 focus:outline-none bg-transparent "
-									/>
+							<div className="space-y-2">
+								<div className="flex justify-between items-center space-x-4">
+									<div className="text-base font-semibold text-[#2e1885]">
+										{/* Display editable or static category */}
+										{skill.isEditable ? (
+											<input
+												type="text"
+												value={skill.category}
+												onChange={(e) => handleEditCategory(e, skill.id)}
+												className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+											/>
+										) : (
+											<p className="inline px-2">{skill.category}</p>
+										)}
+									</div>
+									{/* Edit Button (Pencil Icon) */}
 									<button
-										className="flex text-2xl items-center justify-center w-10 h-10 rounded-full border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-200"
+										className="text-lg text-blue-500 bg-blue-500 rounded-full w-8 h-8 hover:text-blue-700"
+										onClick={() => handleToggleEdit(skill.id)}
+										title="Edit"
+									>
+										✏️
+									</button>
+									{/* Remove Button */}
+									<button
+										className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
 										onClick={() => handleRemove(skill.id)}
+										title="Remove"
 									>
 										&times;
 									</button>
-									<button
-										type="button"
-										className="text-lg text-blue-500"
-										onClick={() => handleToggleEdit(skill.id)}
-									>
-										{skill.isEditable ? "Save" : "Edit"}
-									</button>
+								</div>
+								<div className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
+									{/* Display editable or static skills */}
+									{skill.isEditable ? (
+										<input
+											type="text"
+											value={skill.skills.join(", ")}
+											onChange={(e) => handleEditSkills(e, skill.id)}
+											className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+										/>
+									) : (
+										<p className="inline px-2">{skill.skills.join(", ")}</p>
+									)}
 								</div>
 							</div>
 						</div>

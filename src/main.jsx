@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { ResumeInfoProvider } from "./context/ResumeContext.jsx"; 
+import { ResumeInfoProvider } from "./context/ResumeContext.jsx";
 import {
 	RouterProvider,
 	createHashRouter,
@@ -43,7 +43,8 @@ const router = createHashRouter(
 );
 
 createRoot(document.getElementById("root")).render(
-	<ResumeInfoProvider>
-		<RouterProvider router={router} />
-	</ResumeInfoProvider>
+	
+		<ResumeInfoProvider>
+			<RouterProvider router={router} />
+		</ResumeInfoProvider>
 );

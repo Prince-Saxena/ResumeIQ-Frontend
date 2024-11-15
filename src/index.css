@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	padding-top: 4rem;
-}
 
 @media print {
 	body {
