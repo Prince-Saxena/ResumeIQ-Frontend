@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import shortid from "shortid";
 import { ResumeInfoContext } from "../../context/ResumeContext";
 
@@ -13,16 +13,7 @@ function Education() {
 	const [loc, setLoc] = useState("");
 	const [institution, setInstitution] = useState("");
 
-	// Handle clicking on an education entry to edit
-	const handleEdit = (edu) => {
-		setEditingId(edu.id);
-		setDegree(edu.degree || "");
-		setMajor(edu.major || "");
-		setStart(edu.start || "");
-		setEnd(edu.end || "");
-		setInstitution(edu.institution || "");
-		setLoc(edu.location || "");
-	};
+	const navigate = useNavigate(); // Hook to programmatically navigate
 
 	// Add a new education entry
 	const addEdu = () => {
@@ -48,17 +39,13 @@ function Education() {
 		setLoc("");
 	};
 
-	// Remove an education entry
-	const handleRemove = (id) => {
-		if (formData.education.length === 1) {
-			alert("You have to add at least one Education!");
-			return;
+	// Validation function
+	const check = (e) => {
+		if (!degree || !institution || !start || !end || !loc || !major) {
+			// e.preventDefault();
+			return false;
 		}
-		const updatedEducation = formData.education.filter((edu) => edu.id !== id);
-		setFormData((prevData) => ({
-			...prevData,
-			education: updatedEducation,
-		}));
+		return true;
 	};
 
 	// Save the edited education entry
@@ -174,69 +161,22 @@ function Education() {
 							>
 								Prev
 							</Link>
-							<Link
-								to="../workexp"
+							<button
+								onClick={(e) => {
+									if (check(e)) {
+										navigate("../workexp");
+									} else {
+										alert("You have not fill fields!");
+										// navigate("../workexp");
+									}
+								}}
 								className="px-4 py-2 bg-blue-500 focus:outline-none text-white text-lg rounded hover:bg-blue-600"
 							>
 								Next
-							</Link>
+							</button>
 						</div>
 					</div>
 				</form>
-			</div>
-
-			{/* Education Display */}
-			<div className="section relative bg-white mt-6 p-4 rounded-lg shadow-lg">
-				{formData.education.map((edu) => (
-					<div
-						key={edu.id}
-						className="mx-auto border-2 border-slate-200 p-4 mb-4 h-full rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
-					>
-						<div className="space-y-2">
-							<div className="flex justify-between items-center space-x-4">
-								<div className="text-xl font-semibold text-[#2e1885]">
-									<p className="inline px-2" onClick={() => handleEdit(edu)}>
-										{edu.degree}
-									</p>
-									<span className="text-base font-medium text-gray-600">
-										<p className="inline px-2" onClick={() => handleEdit(edu)}>
-											in {edu.major}
-										</p>
-									</span>
-								</div>
-								{/* Edit Button (Pencil Icon) */}
-								<button
-									className="text-lg text-blue-500 bg-blue-500 rounded-full w-8 h-8 hover:text-blue-700"
-									onClick={() => handleEdit(edu)}
-									title="Edit"
-								>
-									✏️
-								</button>
-								{/* Remove Button */}
-								<button
-									className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
-									onClick={() => handleRemove(edu.id)}
-									title="Remove"
-								>
-									&times;
-								</button>
-							</div>
-							<div className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
-								<p className="inline px-2" onClick={() => handleEdit(edu)}>
-									{edu.institution}
-								</p>
-								<p className="inline px-2" onClick={() => handleEdit(edu)}>
-									{edu.start} - {edu.end}
-								</p>
-							</div>
-							<div className="text-gray-700 text-lg bg-gray-50 px-3 py-2 rounded-lg">
-								<p className="inline px-2" onClick={() => handleEdit(edu)}>
-									{edu.location}
-								</p>
-							</div>
-						</div>
-					</div>
-				))}
 			</div>
 		</div>
 	);

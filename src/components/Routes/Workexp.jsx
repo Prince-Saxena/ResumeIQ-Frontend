@@ -81,6 +81,13 @@ function Workexp() {
 		setEnd("");
 		setResponsibilities("");
 	};
+	const check = (e) => {
+		if (!job || !company || !start || !end || !responsibilities) {
+			e.preventDefault(); // Prevent default navigation
+			return false;
+		}
+		return true;
+	};
 
 	return (
 		<div className="w-full 2xl:sticky 2xl:top-16 p-4 pt-0 h-fit">
@@ -158,12 +165,19 @@ function Workexp() {
 							>
 								Prev
 							</Link>
-							<Link
-								to="../project"
+							<button
+								onClick={(e) => {
+									if (check(e)) {
+										navigate("../project");
+									} else {
+										alert("You have not fill fields!");
+										// navigate("../project");
+									}
+								}}
 								className="px-4 py-2 bg-blue-500 focus:outline-none text-white text-lg rounded hover:bg-blue-600"
 							>
 								Next
-							</Link>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -188,11 +202,11 @@ function Workexp() {
 									</div>
 									<div className="flex gap-2">
 										<button
-											className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
+											className="rounded-full text-blue-500 "
 											onClick={() => handleEdit(exp)}
 											title="Edit"
 										>
-											✏️
+											✏️ Edit
 										</button>
 										<button
 											className="w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600"

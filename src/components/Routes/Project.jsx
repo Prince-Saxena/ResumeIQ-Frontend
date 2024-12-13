@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import shortid from "shortid";
 
 import { ResumeInfoContext } from "../../context/ResumeContext";
 
 function Projects() {
 	const { formData, setFormData } = useContext(ResumeInfoContext);
+	const navigate = useNavigate();
 	const [title, setTitle] = useState("");
 	const [tech, setTech] = useState("");
 	const [role, setRole] = useState("");
@@ -75,6 +77,14 @@ function Projects() {
 		setLink("");
 		setDesc("");
 		setEditProjectId(null);
+	};
+
+	const check = (e) => {
+		if (!title || !tech || !role || !link || !desc) {
+			e.preventDefault(); // Prevent default navigation
+			return false;
+		}
+		return true;
 	};
 
 	return (
@@ -149,12 +159,19 @@ function Projects() {
 							>
 								Prev
 							</Link>
-							<Link
-								to="../skills"
+							<button
+								onClick={(e) => {
+									if (check(e)) {
+										navigate("../skill");
+									} else {
+										alert("You have not fill fields!");
+										// navigate("../skills");
+									}
+								}}
 								className="px-4 py-2 bg-blue-500 text-white text-lg rounded hover:bg-blue-600"
 							>
 								Next
-							</Link>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -167,20 +184,20 @@ function Projects() {
 						className="border-2 border-slate-200 p-4 mb-4 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
 					>
 						<div className="space-y-2">
-							<div className="flex justify-between items-center">
+							<div className="flex justify-between items-center space-x-4">
 								<div className="text-xl font-semibold text-[#2e1885]">
 									{project.title}{" "}
 									<span className="text-base block font-medium text-gray-400">
 										{`{${project.role}}`}
 									</span>
 								</div>
-								<div className="flex gap-2">
+								<div className="flex justify-between space-x-4">
 									<button
-										className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
+										className="rounded-full text-lg text-blue-500"
 										onClick={() => handleEdit(project)} // Edit functionality
 										title="Edit"
 									>
-										✏️
+										✏️ Edit
 									</button>
 									<button
 										className="w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"

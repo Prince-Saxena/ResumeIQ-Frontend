@@ -95,7 +95,7 @@ const ContactUs = () => {
 					<p className="text-blue-700">
 						📚 Built with a lot of late-night coding and a dash of snacks!
 					</p>
-					<p>
+					<p className="text-blue-700">
 						ResumeIQ | <FontAwesomeIcon icon={faLaptopCode} /> Code, coffee, conquer!
 					</p>
 				</footer>

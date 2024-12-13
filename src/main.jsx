@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ResumeInfoProvider } from "./context/ResumeContext.jsx";
+import { UserProvider } from "./context/UserContext.jsx";
 import {
 	RouterProvider,
 	createHashRouter,
@@ -18,10 +19,16 @@ import {
 	Project,
 	ContactUs,
 	Services,
+	SignIn,
+	SignUp,
+	Dashboard,
+	Show,
+	Summary,
+	Customization,
+	ProtectedRoute,
 } from "./components/index.js";
 import App from "./App.jsx";
 import "./index.css";
-import Summary from "./components/Routes/Summary.jsx";
 
 const router = createHashRouter(
 	createRoutesFromElements(
@@ -30,7 +37,32 @@ const router = createHashRouter(
 			<Route path="about" element={<About />} />
 			<Route path="contact" element={<ContactUs />} />
 			<Route path="services" element={<Services />} />
-			<Route path="user-input" element={<ResumeInput />}>
+			<Route path="signin" element={<SignIn />} />
+			<Route path="signup" element={<SignUp />} />
+			<Route
+				path="/dashboard"
+				element={
+					<ProtectedRoute>
+						<Dashboard />
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path="/share&save"
+				element={
+					<ProtectedRoute>
+						<Show />
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path="/user-input"
+				element={
+					<ProtectedRoute>
+						<ResumeInput />
+					</ProtectedRoute>
+				}
+			>
 				<Route path="personal" element={<Personal />} />
 				<Route path="project" element={<Project />} />
 				<Route path="summary" element={<Summary />} />
@@ -38,13 +70,25 @@ const router = createHashRouter(
 				<Route path="workexp" element={<Workexp />} />
 				<Route path="skills" element={<Skills />} />
 			</Route>
+			{/* <Route path="share&save" element={<Show />} /> */}
+			<Route path="customization" element={<Customization />} />
+
+			{/* <Route path="user-input" element={<ResumeInput />}>
+				<Route path="personal" element={<Personal />} />
+				<Route path="project" element={<Project />} />
+				<Route path="summary" element={<Summary />} />
+				<Route path="education" element={<Education />} />
+				<Route path="workexp" element={<Workexp />} />
+				<Route path="skills" element={<Skills />} />
+			</Route> */}
 		</Route>
 	)
 );
 
 createRoot(document.getElementById("root")).render(
-	
-		<ResumeInfoProvider>
+	<ResumeInfoProvider>
+		<UserProvider>
 			<RouterProvider router={router} />
-		</ResumeInfoProvider>
+		</UserProvider>
+	</ResumeInfoProvider>
 );

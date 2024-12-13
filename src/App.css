@@ -12,6 +12,12 @@ html {
 	height: 100%;
 	width: 100%;
 }
+html {
+	scrollbar-gutter: stable;
+	/* or */
+	overflow-y: scroll;
+	overflow-x: scroll;
+}
 
 /* .logo {
 	height: auto;
@@ -29,4 +35,66 @@ html {
 	left: -3px;
 	top: -3px;
 	-webkit-text-stroke: 1px blue;
+}
+
+@media (max-width: 1280px) and (min-width: 1040px) {
+	.hero-text {
+		text-wrap: nowrap;
+	}
+}
+
+.svg-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.shape {
+	stroke-dasharray: 0 580;
+	stroke-dashoffset: 580;
+	stroke-width: 4px;
+	fill: transparent;
+	stroke: #fefefe;
+	border-bottom: 5px solid black;
+	transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+	fill: rgb(20, 20, 20);
+}
+
+.text {
+	font-family: "David Libre", sans-serif;
+	font-size: 22px;
+	line-height: 32px;
+	letter-spacing: 8px;
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+.shape-border {
+	stroke-width: 4px;
+	stroke-dashoffset: 0;
+	stroke-dasharray: 480 100;
+}
+
+@keyframes dash {
+	0% {
+		stroke-dasharray: 0 580;
+	}
+	50% {
+		stroke-dasharray: 200 580;
+	}
+	100% {
+		stroke-dasharray: 580 580;
+	}
+}
+
+.animate-border .shape {
+	animation: dash 2.7s ease-in-out forwards;
 }

@@ -1,43 +1,50 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import Resume from "../Resume/Resume.jsx";
+
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import Resume from "../Resume/Resume";
-import html2pdf from "html2pdf.js";
 
 const ResumeInput = () => {
 	const resumeRef = useRef();
 	const navigate = useNavigate();
 
+	const clearLocalStorgae = () => {
+		localStorage.removeItem("formData");
+		location.reload();
+	};
+
 	const handleSelectChange = (e) => {
 		const selectedLink = e.target.value;
 		if (selectedLink) {
-			navigate(selectedLink);
+			navigate("./" + selectedLink);
 		}
 	};
-	const handleDownload = () => {
-		const element = resumeRef.current;
-		const options = {
-			margin: 0,
-			filename: "resume.pdf",
-			image: {
-				type: "jpeg",
-				quality: 1.0,
-			},
-			html2canvas: {
-				scale: 3,
-				useCORS: true,
-				backgroundColor: null,
-				logging: true,
-			},
-			jsPDF: {
-				orientation: "portrait",
-				unit: "in",
-				format: "letter",
-				margin: 0,
-			},
-		};
+	// const handleDownload = () => {
+	// 	const element = resumeRef.current;
+	// 	const options = {
+	// 		margin: 0,
+	// 		filename: "resume.pdf",
+	// 		image: {
+	// 			type: "jpeg",
+	// 			quality: 1.0,
+	// 		},
+	// 		html2canvas: {
+	// 			scale: 3,
+	// 			useCORS: true,
+	// 			backgroundColor: null,
+	// 			logging: true,
+	// 		},
+	// 		jsPDF: {
+	// 			orientation: "portrait",
+	// 			unit: "in",
+	// 			format: "letter",
+	// 			margin: 0,
+	// 		},
+	// 	};
 
-		html2pdf().from(element).set(options).save();
-	};
+	// 	html2pdf().from(element).set(options).save();
+	// };
+
+	const handleDownload = () => {};
 
 	return (
 		<div className=" text-[#2e1885] px-5 py-20 ">
@@ -92,15 +99,21 @@ const ResumeInput = () => {
 					</div>
 				</div>
 				{/* Download Button */}
-				<div className="flex items-center">
+				{/* <div className="flex items-center">
 					<button
 						// onClick={handleDownload}
 						onClick={() => handleDownload()}
 						className=" sm:mt-0 ml-auto px-4 py-2 bg-blue-500 text-white rounded shadow transition duration-200 hover:bg-blue-600"
 					>
-						Download PDF
+						Save
 					</button>
-				</div>
+				</div> */}
+				<button
+					onClick={clearLocalStorgae}
+					className=" sm:mt-0 ml-auto px-4 py-2 bg-blue-500 text-white rounded shadow transition duration-200 hover:bg-blue-600"
+				>
+					Refresh Form Data
+				</button>
 			</section>
 
 			{/* Layout for Form and Preview */}
