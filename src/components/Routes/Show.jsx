@@ -1,11 +1,11 @@
 import React, { useRef, useState ,useContext} from "react";
 import Resume from "../Resume/Resume";
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 
 import html2pdf from "html2pdf.js";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/UserContext.jsx";
 import axios from "axios";
-import { saveURL } from "../../assets/URL";
+import { saveURL } from "../../assets/URL.js";
 
 export default function Show() {
 		const { formData} = useContext(ResumeInfoContext);

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import shortid from "shortid";
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 
 function Education() {
 	const { formData, setFormData } = useContext(ResumeInfoContext);

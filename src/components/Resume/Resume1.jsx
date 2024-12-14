@@ -1,5 +1,5 @@
 import React, { useContext, forwardRef } from "react";
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 // import "./style.css";

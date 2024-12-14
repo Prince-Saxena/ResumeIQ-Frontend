@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import shortid from "shortid";
 
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 
 function Projects() {
 	const { formData, setFormData } = useContext(ResumeInfoContext);

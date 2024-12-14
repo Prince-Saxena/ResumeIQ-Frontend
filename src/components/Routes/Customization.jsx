@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useStyle } from "../../context/StyleContext";
-import Resume from "../Resume/Resume";
+import { useStyle } from "../../context/StyleContext.jsx";
+import Resume from "../Resume/Resume.jsx";
 import { useNavigate } from "react-router-dom";
 
 function Customization() {

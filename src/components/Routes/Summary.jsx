@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom"; // Importing useNavigate hook
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBrain } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { genAIURL } from "../../assets/URL";
+import { genAIURL } from "../../assets/URL.js";
 
 function Summary() {
 	const [showModal, setShowModal] = useState(false);

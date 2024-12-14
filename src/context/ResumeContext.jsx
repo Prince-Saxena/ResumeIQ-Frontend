@@ -1,6 +1,6 @@
 // ResumeContext.jsx
 import React, { createContext, useState, useEffect } from "react";
-import resumeData from "../assets/dummy";
+import resumeData from "../assets/dummy.js";
 
 export const ResumeInfoContext = createContext();
 

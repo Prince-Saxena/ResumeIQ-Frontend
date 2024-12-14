@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./components/main-page/Nav";
 import { Outlet } from "react-router-dom";
-import { StyleProvider } from "./context/StyleContext";
+import { StyleProvider } from "./context/StyleContext.jsx";
 import { UserProvider, useUser } from "./context/UserContext.jsx";
 import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
+
+import {jwtDecode} from "jwt-decode";
 
 import "./App.css";
 
 function App() {
+	// console.log(Cookies);
+
 	const { user, setUser } = useUser();
 	const [loading, setLoading] = useState(true); // Start with loading as true
 

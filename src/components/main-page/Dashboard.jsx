@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ResumeInfoContext } from "../../context/ResumeContext";
-import { useUser } from "../../context/UserContext";
-import Card from "../small-components/Card";
-import { nanoid } from "nanoid";
-import { getURL } from "../../assets/URL";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
+import { useUser } from "../../context/UserContext.jsx";
+import Card from "../small-components/Card.jsx";
+import { getURL } from "../../assets/URL.js";
 
 const Dashboard = () => {
 	const { formData, setFormData } = useContext(ResumeInfoContext);

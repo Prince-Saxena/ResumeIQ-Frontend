@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faL, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import RESUMEIQ from "/RESUMEIQ1.png";
 import axios from "axios";
-import { useUser } from "../../context/UserContext";
-import { logOutURL } from "../../assets/URL";
+import { useUser } from "../../context/UserContext.jsx";
+import { logOutURL } from "../../assets/URL.js";
 
 export default function NavBar() {
 	const navigate = useNavigate();

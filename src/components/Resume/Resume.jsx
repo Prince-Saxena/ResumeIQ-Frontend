@@ -1,10 +1,10 @@
 import React, { useContext, forwardRef } from "react";
 import "../../index.css";
-import { ResumeInfoContext } from "../../context/ResumeContext";
+import { ResumeInfoContext } from "../../context/ResumeContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
-import { useStyle } from "../../context/StyleContext";
+import { useStyle } from "../../context/StyleContext.jsx";
 
 const Resume = forwardRef((props, ref) => {
 	const { formData, hasWorkExperience } = useContext(ResumeInfoContext);

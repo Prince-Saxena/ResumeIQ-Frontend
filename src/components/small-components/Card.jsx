@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useUser } from "../../context/UserContext";
-import { delURL } from "../../assets/URL";
+import { useUser } from "../../context/UserContext.jsx";
+import { delURL } from "../../assets/URL.js";
 
 function Card({ title, publicId }) {
 	const { user } = useUser();
