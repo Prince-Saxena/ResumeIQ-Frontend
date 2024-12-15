@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faL, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {  faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import RESUMEIQ from "/RESUMEIQ1.png";
 import axios from "axios";
 import { useUser } from "../../context/UserContext.jsx";
