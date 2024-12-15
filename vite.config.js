@@ -3,4 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
 	plugins: [react()],
+	base: "https://prince-saxena.github.io/ResumeIQ/",
 });
